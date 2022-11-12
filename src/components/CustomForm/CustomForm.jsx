@@ -82,7 +82,7 @@ export default function CustomForm({title, image, fields, buttons, onSubmit}) {
                                 {button.label}
                             </LinkNavigate>
                             : 
-                            <Button block="true" size="lg" type={button.type}>
+                            <Button block="true" size="lg" role="button" type={button.type}>
                                 {button.label}
                             </Button>
                         ))

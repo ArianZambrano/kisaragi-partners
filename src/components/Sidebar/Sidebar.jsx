@@ -7,19 +7,19 @@ const sidebarItems = [
         icon: 'pi pi-fw pi-home'
     },
     {
-        label: 'Edit',
+        label: 'Editar',
         icon: 'pi pi-fw pi-pencil'
     },
     {
-        label: 'Products',
+        label: 'Productos',
         icon: 'pi pi-fw pi-box'
     },
     {
-        label: 'Clients',
+        label: 'Clientes',
         icon: 'pi pi-fw pi-user'
     },
     {
-        label: 'Orders',
+        label: 'Órdenes',
         icon: 'pi pi-fw pi-shopping-bag'
     },
     {
