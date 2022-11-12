@@ -1,6 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;700;900&display=swap');
 
+
+@import "primereact/resources/themes/lara-light-indigo/theme.css";  
+@import "primereact/resources/primereact.min.css";                  
+@import "primeicons/primeicons.css";  
 * {
   font-family: 'Playfair Display', serif;
   font-family: 'Raleway', sans-serif;
