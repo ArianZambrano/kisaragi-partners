@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import './AdminHome.css'
 import Container from "../../components/Container/Container";
 import { Card } from "react-bootstrap";
 import { Button } from "primereact";
 import { getStoresById } from '../../services/StoreService'
+import UserContext from "../../context/userContext";
 
 export default function UserHome() {
     const [stores, setStores] = useState(); 
+    const [user, setUser] = useContext(UserContext);
 
     useEffect(()=>{
-        
+        async function fetchData() {
+            console.log(user)
+            const res = await getStoresById(user.user_id);
+            console.log(res)
+        };
+
+        fetchData()
     }, [])
 
     return (

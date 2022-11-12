@@ -1,12 +1,22 @@
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import CustomForm from "../../components/CustomForm/CustomForm";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../services/AuthService";
 import './Login.css'
 
 export default function Login() {
+  const navigate = useNavigate()
+
   const onSubmit = async (data) => {
-    await login(data)
-    .then(res => console.log(res))
+    const res = await login(data)
+    if (!res) {
+      toast.error('Algo salió mal. Vuelva a intentarlo', {
+          position: toast.POSITION.BOTTOM_RIGHT
+      })
+      return;
+    }
+    navigate('../admin-home') 
   }
 
   const loginFields = [
@@ -47,6 +57,9 @@ export default function Login() {
   }
 
   return (
-    <CustomForm {...customizedForm} />
+    <>
+      <CustomForm {...customizedForm} />
+      <ToastContainer />
+    </>
   );
 }

@@ -1,7 +1,7 @@
 const USER_URL = `${process.env.REACT_APP_KISARAGI_AUTH_API_URL}`
 
 const postUser = async(payload) => {
-    return await fetch(`${USER_URL}/users`, {
+    return fetch(`${USER_URL}/users`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {

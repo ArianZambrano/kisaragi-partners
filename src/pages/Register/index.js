@@ -8,22 +8,20 @@ export default function Register() {
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-        await postUser({
+        const res = await postUser({
             ...data,
             role: process.env.REACT_APP_ROLE
         })
-        .then(res => {
-            if (res.hasOwnProperty('detail')) {
-                toast.error('Algo salió mal. Vuelva a intentarlo', {
-                    position: toast.POSITION.BOTTOM_RIGHT
-                })
-                return;
-            }
-            toast.success("Admin Creado !", {
-                position: toast.POSITION.TOP_CENTER
-            });
-            navigate('/login')
-        }) 
+        if (res.hasOwnProperty('detail')) {
+            toast.error('Algo salió mal. Vuelva a intentarlo', {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+            return;
+        }
+        toast.success("Admin Creado !", {
+            position: toast.POSITION.TOP_CENTER
+        });
+        navigate('/login')
     }
 
     const registerFields = [
