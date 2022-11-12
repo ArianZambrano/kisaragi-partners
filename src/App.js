@@ -14,7 +14,7 @@ function App() {
     <UserProvider>
       <Routes>
           {/*ROOT PATH*/}
-          <Route path="/" element={<Navigate to="/home" replace/>}>
+          <Route path="/" element={<Navigate to="/user-home" replace/>}>
           </Route>
           {
             routes.map(route => (

@@ -61,6 +61,7 @@ export default function CustomForm({title, image, fields, buttons, onSubmit}) {
                             <Form.Control 
                                 type={field.type}
                                 placeholder={field.placeholder}
+                                pattern={field.pattern}
                                 {...register(field.key, {required: field.validator})}
                             />
                             {

@@ -1,6 +1,7 @@
-import Home from "../pages/Home";
+import AdminHome from "../pages/AdminHome";
 import Login from "../pages/Login";
 import Register from "../pages/Register"
+import StoreHome from "../pages/StoreHome";
 
 const routes = [
     {
@@ -12,8 +13,12 @@ const routes = [
         element: <Register />
     },
     {
-        path: '/home',
-        element: <Home />
+        path: '/admin-home',
+        element: <AdminHome />
+    },
+    {
+        path: '/store-home',
+        element: <StoreHome />
     }
 ]
 

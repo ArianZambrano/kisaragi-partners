@@ -1,38 +1,40 @@
 import React from "react";
-import CustomForm from "../../components/CustomForm";
+import CustomForm from "../../components/CustomForm/CustomForm";
+import { login } from "../../services/AuthService";
 import './Login.css'
 
 export default function Login() {
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    await login(data)
+    .then(res => console.log(res))
   }
 
   const loginFields = [
     {
       key: 'email',
-      label: 'Email',
-      placeholder: 'Enter Email',
+      label: 'Correo',
+      placeholder: 'Ingrese coreo',
       type: 'email',
-      validator: 'Email is required'
+      validator: 'Correo es requerido'
     },
     {
       key: 'password',
-      label: 'Password',
-      placeholder: 'Enter Password',
+      label: 'Contraseña',
+      placeholder: 'Ingrese contraseña',
       type: 'password',
-      validator: 'Password is required'
+      validator: 'Contraseña es requerida'
     }
   ];
 
   const loginButtons = [
     {
       type: 'submit',
-      label: 'Login'
+      label: 'Iniciar Sesión'
     },
     {
       type: 'router',
       route: '/register',
-      label: 'Register your store' 
+      label: 'Registrarte como admin' 
     }
   ]
 

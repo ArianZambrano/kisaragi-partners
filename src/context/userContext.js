@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import isAuthenticated from '../services/AuthService';
+import { login } from '../services/AuthService';
 import Login from '../pages/Login';
 
 const UserContext = createContext();
@@ -11,7 +11,7 @@ export const UserProvider = ({children}) => {
 
     //FIXME: INTEGRATION
     useEffect(()=>{
-        if (isAuthenticated){
+        if (true){
             setCurrentUser({
                 username: 'admin'
             })
