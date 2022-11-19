@@ -2,11 +2,11 @@ import CustomForm from "./CustomForm";
 import { BrowserRouter as Router,
         Routes,
         Route } from "react-router-dom";     
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, spyOn } from "@testing-library/react";
 
-console.log = jest.fn()
 
 beforeEach(() => {
+    const MOCK_FUNCT = jest.fn();
     const testProps = {
         title: 'Test Title',
         fields: [{
@@ -16,7 +16,7 @@ beforeEach(() => {
         buttons: [{
             label: 'Test Button'
         }],
-        onSubmit: () => {log('Test submit')}
+        onSubmit: MOCK_FUNCT
     }
     render(
         <Router>
@@ -40,6 +40,7 @@ test('Debe mostrar el label del botón de prueba', () => {
 })
 
 test('Simulando evento click al botón', () => {
-    const button = screen.getByRole('button');
-    fireEvent.click(button);
+    const logSpy = jest.spyOn(console, 'log');
+    fireEvent.click(screen.getByText('Test Button'));
+    expect(MOCK_FUNCT).toHaveBeenCalled();
 })
