@@ -49,7 +49,12 @@ export default function CustomForm({title, image, fields, buttons, onSubmit}) {
         <FormContainer>
             <FormHeader>
                 <FormTitle>{title}</FormTitle>
-                <img src={image} alt={image} />
+                {
+                    image ? 
+                    <img src={image} alt={image} />
+                    :
+                    <></>
+                }
             </FormHeader>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 {

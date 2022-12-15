@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isAuth } from '../services/AuthService';
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState()
@@ -10,7 +10,8 @@ export const UserProvider = ({children}) => {
 
     useEffect(()=>{
         if (isAuth()){
-            setCurrentUser(JSON.parse(isAuth()))
+            const user = JSON.parse(isAuth());
+            setCurrentUser(user)
         }
         else {
             navigate('/login')
@@ -18,10 +19,8 @@ export const UserProvider = ({children}) => {
     }, [])
 
     return (
-        <UserContext.Provider value={[currentUser, setCurrentUser]}>
+        <UserContext.Provider value={{currentUser, setCurrentUser}}>
             {children}
         </UserContext.Provider>
     )
 }
-
-export default UserContext
