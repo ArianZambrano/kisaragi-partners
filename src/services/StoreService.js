@@ -1,8 +1,26 @@
 const STORE_URL = `${process.env.REACT_APP_KISARAGI_CORE_API_URL }/stores`
 
-const getStoresById = (id) => {
-    return fetch(`${STORE_URL}/${id}`, {
-        method: 'GET'
+const getStoresById = (adminId) => {
+    return fetch(`${STORE_URL}/admin_id`, {
+        method: 'POST',
+        body: JSON.stringify({adminId}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .catch(err => {
+        return []
+    })
+}
+
+const getStore = (storeId) => {
+    return fetch(`${STORE_URL}/id`, {
+        method: 'POST',
+        body: JSON.stringify({id: storeId}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
     .then(res => res.json())
     .catch(err => {
@@ -13,7 +31,24 @@ const getStoresById = (id) => {
 const postStore = (payload) => {
     return fetch(`${STORE_URL}/save`, {
         method: 'POST',
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .catch(err => {
+        return {}
+    })
+}
+
+const postStoreCategorie = (storeId, categoryId) => {
+    return fetch(`${STORE_URL}/${storeId}/add_category`, {
+        method: 'POST',
+        body: JSON.stringify({id: categoryId}),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
     .then(res => res.json())
     .catch(err => {
@@ -23,5 +58,7 @@ const postStore = (payload) => {
 
 export {
     getStoresById,
-    postStore
+    postStore,
+    getStore,
+    postStoreCategorie,
 }

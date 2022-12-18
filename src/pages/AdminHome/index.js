@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import './AdminHome.css'
 import { ToastContainer, toast } from 'react-toastify';
 import Container from "../../components/Container/Container";
@@ -9,9 +10,10 @@ import { UserContext } from "../../context/userContext";
 import CustomForm from "../../components/CustomForm/CustomForm";
 
 export default function AdminHome() {
-    const [stores, setStores] = useState(undefined); 
+    const [stores, setStores] = useState([]); 
     const {currentUser, setCurrentUser} = useContext(UserContext);
     const [isOpenSotreForm, setIsOpenStoreForm] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         async function fetchData() {
@@ -24,8 +26,9 @@ export default function AdminHome() {
     }, [])
 
     const getLatLong = () => {
-        let latitude, longitude = 0;
+        let latitude = 0, longitude = 0;
         navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position)
             if (position) {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude
@@ -40,7 +43,6 @@ export default function AdminHome() {
         const res = await postStore({
             ...data,
             adminId: currentUser.user_id,
-            telephone: currentUser.telephone_number,
             latitude,
             longitude
         }); 
@@ -74,6 +76,13 @@ export default function AdminHome() {
             placeholder: 'Ingrese Dirección',
             type: 'text',
             validator: 'Dirección es requerida'
+        },
+        {
+            key: 'telephone',
+            label: 'Teléfono de la tienda',
+            placeholder: 'Ingrese el Teléfono de la tienda',
+            type: 'text',
+            validator: 'Ingrese el teléfono de la tienda'
         }
     ]
 
@@ -95,8 +104,27 @@ export default function AdminHome() {
                 <Card.Body>
                     <Button label="Añadir Tienda" icon="pi pi-plus" onClick={()=>{setIsOpenStoreForm(true)}}/>
                     {
-                        stores ? 
-                        <></>
+                        stores.length !== 0 ? 
+                        <div className="grid-container">
+                            {
+                                stores.map(store => (
+                                    <Card className="grid-container-card">
+                                        <Card.Header className="card-title">
+                                            {store.name}
+                                        </Card.Header>
+                                        <Card.Body>
+                                            <p>Dirección: {store.address}</p>
+                                            <p>Teléfono: {store.telephone}</p>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <div className="d-flex justify-content-end">
+                                                <Button label="Ir" onClick={()=>{navigate(`/store-home/${store.id}`)}}></Button>
+                                            </div>
+                                        </Card.Footer>
+                                    </Card>
+                                ))
+                            }
+                        </div>
                         :
                         <Card.Text style={{textAlign: 'center'}}>
                             No cuenta con tiendas creadas
@@ -106,7 +134,10 @@ export default function AdminHome() {
             </Card>
             {
                 isOpenSotreForm ?
-                <CustomForm {...newStoreForm} />
+                <>
+                    <CustomForm {...newStoreForm} />
+                    <ToastContainer />
+                </>
                 :
                 <></>
             }

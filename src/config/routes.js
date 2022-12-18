@@ -17,7 +17,7 @@ const routes = [
         element: <AdminHome />
     },
     {
-        path: '/store-home',
+        path: '/store-home/:storeId',
         element: <StoreHome />
     }
 ]
