@@ -41,7 +41,7 @@ const LinkNavigate = styled.a`
     
 `
 
-export default function CustomForm({title, image, fields, buttons, onSubmit}) {
+export default function CustomForm({title, image, fields, buttons, onSubmit, size}) {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -60,7 +60,7 @@ export default function CustomForm({title, image, fields, buttons, onSubmit}) {
                 {
                     fields.map(field => 
                         <Form.Group size="lg" controlId={field.key}>
-                            <div className="p-2">
+                            <div className={size==='small'? 'p-2' : ''}>
                                 <Form.Label style={{fontWeight: 'bold'}}>{field.label}</Form.Label>
                             </div>
                             <Form.Control 

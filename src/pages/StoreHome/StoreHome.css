@@ -2,3 +2,22 @@
     display: flex;
     gap: 8px
 }
+
+.checkboxes-container {
+    display: flex;
+    gap: 24px;
+}
+
+.field-checkbox {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.products-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: 10px 0;
+    gap: 16px;
+}

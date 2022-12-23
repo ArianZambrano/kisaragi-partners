@@ -42,10 +42,10 @@ const postStore = (payload) => {
     })
 }
 
-const postStoreCategorie = (storeId, categoryId) => {
-    return fetch(`${STORE_URL}/${storeId}/add_category`, {
+const postStoreCategories = (storeId, storeCategoriesIds) => {
+    return fetch(`${STORE_URL}/set_categories`, {
         method: 'POST',
-        body: JSON.stringify({id: categoryId}),
+        body: JSON.stringify({storeId, storeCategoriesIds}),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -60,5 +60,5 @@ export {
     getStoresById,
     postStore,
     getStore,
-    postStoreCategorie,
+    postStoreCategories,
 }
