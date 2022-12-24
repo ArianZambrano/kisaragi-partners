@@ -8,8 +8,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { UserContext } from "../../context/userContext"
 import { getStore } from "../../services/StoreService";
 import { wait } from "@testing-library/user-event/dist/utils";
+import { getProductCategoriesByStore } from "../../services/ProductsCategoryService";
 
 jest.mock("../../services/StoreService")
+jest.mock("../../services/ProductsCategoryService")
 
 const navigate = jest.fn();
 
@@ -23,7 +25,12 @@ beforeEach(() => {
         }
     };
 
+    const productCategories = [
+        {name: 'Test Store', id: '1'}
+    ]
+
     getStore.mockResolvedValueOnce(store)
+    getProductCategoriesByStore.mockResolvedValueOnce(productCategories)
 
     jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
 
