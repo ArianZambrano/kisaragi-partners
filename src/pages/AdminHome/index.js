@@ -4,7 +4,7 @@ import './AdminHome.css'
 import { ToastContainer, toast } from 'react-toastify';
 import Container from "../../components/Container/Container";
 import { Card } from "react-bootstrap";
-import { Button } from "primereact";
+import { Button } from "primereact/button";
 import { getStoresById, postStore } from '../../services/StoreService'
 import { UserContext } from "../../context/userContext";
 import CustomForm from "../../components/CustomForm/CustomForm";
@@ -102,7 +102,7 @@ export default function AdminHome() {
                     </Card.Title>                    
                 </Card.Header>
                 <Card.Body>
-                    <Button label="Añadir Tienda" icon="pi pi-plus" onClick={()=>{setIsOpenStoreForm(true)}}/>
+                    <Button label="Añadir Tienda" icon="pi pi-plus" data-testid="new-store-test" onClick={()=>{setIsOpenStoreForm(true)}}/>
                     {
                         stores.length !== 0 ? 
                         <div className="grid-container">
@@ -118,7 +118,7 @@ export default function AdminHome() {
                                         </Card.Body>
                                         <Card.Footer>
                                             <div className="d-flex justify-content-end">
-                                                <Button label="Ir" onClick={()=>{navigate(`/store-home/${store.id}`)}}></Button>
+                                                <Button label="Ir" data-testid="navigate-test" onClick={()=>{navigate(`/store-home/${store.id}`)}}></Button>
                                             </div>
                                         </Card.Footer>
                                     </Card>

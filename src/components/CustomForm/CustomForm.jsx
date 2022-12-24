@@ -56,7 +56,7 @@ export default function CustomForm({title, image, fields, buttons, onSubmit, siz
                     <></>
                 }
             </FormHeader>
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form onSubmit={handleSubmit(onSubmit)} data-testid="form">
                 {
                     fields.map(field => 
                         <Form.Group size="lg" controlId={field.key}>

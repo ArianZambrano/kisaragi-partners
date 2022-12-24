@@ -3,10 +3,11 @@ import { BrowserRouter as Router,
         Routes,
         Route } from "react-router-dom";     
 import { render, screen, fireEvent, spyOn } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 
+const MOCK_FUNCT = jest.fn();
 
 beforeEach(() => {
-    const MOCK_FUNCT = jest.fn();
     const testProps = {
         title: 'Test Title',
         fields: [{
@@ -39,8 +40,9 @@ test('Debe mostrar el label del botón de prueba', () => {
     expect(screen.getByText('Test Button')).toBeInTheDocument()
 })
 
-test('Simulando evento click al botón', () => {
-    const logSpy = jest.spyOn(console, 'log');
-    fireEvent.click(screen.getByText('Test Button'));
+test('Simulando evento click al botón', async () => {
+    await act( async () => {
+        await fireEvent.submit(screen.getByTestId('form'));
+    })
     expect(MOCK_FUNCT).toHaveBeenCalled();
 })

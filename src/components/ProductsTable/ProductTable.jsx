@@ -1,7 +1,7 @@
 import React from "react";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { Button } from "primereact";
+import { Button } from "primereact/button";
 
 const ProductsTable = ({products, onNewProduct, disabled, onDelete}) => {
     return (

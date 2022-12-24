@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './StoreHome.css'
 import { useParams } from "react-router-dom";
-import { Button } from "primereact";
+import { Button } from "primereact/button";
 import { Checkbox } from 'primereact/checkbox';
 import { ToastContainer, toast } from 'react-toastify';
 import { Dialog } from 'primereact/dialog';
