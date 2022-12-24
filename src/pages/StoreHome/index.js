@@ -11,7 +11,7 @@ import ProductsTable from '../../components/ProductsTable/ProductTable'
 import CustomForm from "../../components/CustomForm/CustomForm";
 import { getStore, postStoreCategories } from "../../services/StoreService";
 import { getCategories } from "../../services/StoreCategoryService";
-import { getProductsByStore, postProduct, getProductsByCategory } from "../../services/ProductsService";
+import { getProductsByStore, postProduct, getProductsByCategory } from "../../services/ProductsService"; 
 import { getProductCategoriesByStore, postProductCategories } from "../../services/ProductsCategoryService";
 
 export default function StoreHome() {
