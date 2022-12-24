@@ -50,7 +50,8 @@ You can actually deploy the project directly in personal project set on Vercel w
 1. Install vercel with "npm install vercel -g"
 2. Build the application with "vercel"
 3. Set your credentials for Github Oauth (If you haven't created a project, you can do it at that time)
-4. Every action set on workflow setting will be reflected on vercel
+4. Every action set on workflow setting will be reflected on vercel, you can run via CLI the command "vercel
+   --prod" to run directly to the production enrivonment.
 
 ## Learn More
 
